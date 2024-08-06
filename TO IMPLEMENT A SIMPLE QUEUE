@@ -28,7 +28,7 @@ int main()
 	case 4:
 		peek(q,f);
 		break;
-	}}while(ch!=5);
+	}}while(ch<=4);
 	return 0;
 }
 int enq(int q[],int r)
