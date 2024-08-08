@@ -1,0 +1,153 @@
+#include <stdio.h>
+int enq( int [],int);
+int deq(int [],int[],int);
+void disp(int [],int,int);
+int main()
+{
+  int ch;
+  printf("1.INSERTION\n 2.DELETION\n 3.DISPLAY\n");
+  printf("ENTER YOUR CHOICE\n");
+  scanf("%c",&ch);
+  do{
+    switch(ch)
+    {
+      case 1:
+        r=enq(q,r);
+          if (f==-1)
+            f=0;
+        break;
+      case 2:
+        f=deq(q,f,r);
+          r=(r+1)%max;
+          break;
+      case 3:
+        disp(q,f,r);
+        break;
+     }}while(ch<=3);
+}
+
+int enq(int q[],int r)
+{
+  int x;
+  if( (r+1)%max=f)
+  {
+    printf("the queue is full");
+  }
+  else{
+    printf("enter the element");
+    scanf("%d",&x);
+    r++:
+    q[r]=x;
+    }
+    return r;
+}
+int deq(int [],int f,int r)
+{
+  int x;
+  if (f==-1 && r==-1)
+  {
+    printf("queue is empty");
+  }
+  else
+  {
+    x=q[f];
+    printf("the value deleted is",x);
+    if(f==r)
+    {
+      f=-1;
+     }
+     else{
+     f=(f+1)%max;}
+     }
+    return f;#include <stdio.h>
+int enq( int [],int);
+int deq(int [],int[],int);
+void disp(int [],int,int);
+int main()
+{
+  int ch;
+  printf("1.INSERTION\n 2.DELETION\n 3.DISPLAY\n");
+  printf("ENTER YOUR CHOICE\n");
+  scanf("%c",&ch);
+  do{
+    switch(ch)
+    {
+      case 1:
+        r=enq(q,r);
+          if (f==-1)
+            f=0;
+        break;
+      case 2:
+        f=deq(q,f,r);
+          r=(r+1)%max;
+          break;
+      case 3:
+        disp(q,f,r);
+        break;
+     }}while(ch<=3);
+}
+
+int enq(int q[],int r)
+{
+  int x;
+  if( (r+1)%max=f)
+  {
+    printf("the queue is full");
+  }
+  else{
+    printf("enter the element");
+    scanf("%d",&x);
+    r++:
+    q[r]=x;
+    }
+    return r;
+}
+int deq(int [],int f,int r)
+{
+  int x;
+  if (f==-1 && r==-1)
+  {
+    printf("queue is empty");
+  }
+  else
+  {
+    x=q[f];
+    printf("the value deleted is",x);
+    if(f==r)
+    {
+      f=-1;
+     }
+     else{
+     f=(f+1)%max;}
+     }
+    return f;
+}
+void disp(int [],injt f,inht r)
+{
+  if(f==-1 && r==-1)
+  {
+    printf("queue is emnpty");
+  }
+  else{
+    printf("%d",q[f]);
+   f=(f+1)%max;
+   }
+   printf("%d",q[f]);
+   return;
+}
+    
+}
+void disp(int [],injt f,inht r)
+{
+  if(f==-1 && r==-1)
+  {
+    printf("queue is emnpty");
+  }
+  else{
+    printf("%d",q[f]);
+   f=(f+1)%max;
+   }
+   printf("%d",q[f]);
+   return;
+}
+    
