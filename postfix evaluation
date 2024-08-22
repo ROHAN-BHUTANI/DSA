@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define max 20
+void push(int[],int,int*);
+int pop(int[],int*);
+int po(int,int);
+int main()
+{
+	int stack[max],top=-1;
+	char ch;
+	int i=0,x,x1,res=0;
+	char postfix[max]={'6','3','*','5','2', '+','2','2','^','/','-'};
+	while(postfix[i]!='\0')
+	{
+		ch=postfix[i];
+		if(ch=='+' || ch=='-' || ch=='/' || ch=='%' || ch=='*' || ch=='^')
+		{
+			x1=pop(stack,&top);
+			x=pop(stack,&top);
+			switch(ch)
+			{
+				case '+':
+					res=x+x1;
+					break;
+				case '-':
+					res=x-x1;
+					break;
+				case '*':
+					res=x*x1;
+					break;
+				case '/':
+					res=x/x1;
+					break;
+				case '%':
+					res=x%x1;
+					break;
+				case '^':
+					res=po(x,x1);
+					break;
+			}
+			push(stack,res,&top);
+		}
+		else
+		{
+			int m=ch-'0';
+			push(stack,m,&top);	
+		}
+		i++;
+	}
+	printf("%d",stack[top]);
+}
+void push(int stack[],int v,int *top)
+{
+	(*top)++;
+	stack[*top]=v;
+	return;
+}
+int pop(int stack[],int *top)
+{
+	int x=stack[*top];
+	(*top)--;
+	return x;
+}
+int po(int x,int y)
+{
+	int  i=0,res=1;
+	while(i<y)
+	{
+		res=res*x;
+		i++;
+	}
+	return res;
+}
+
+
+	
+	
+	
