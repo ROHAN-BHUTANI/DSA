@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct node{
+	int data;
+	float value;
+	struct node *next;
+}sl;
+main()
+{
+	sl m1,m2,m3,*p=NULL;
+	m1.data=10;
+	m1.value=0.5;
+	m2.data=20;
+	m2.value=1.0;
+	m3.data=30;
+	m3.value=1.5;
+	m1.next=&m2;
+	m2.next=&m3;
+	m3.next=NULL;
+	p=&m1;
+	while(p!=NULL)
+	{
+		printf("%d   %f  ->",p->data,p->value);
+		p=p->next;
+	}
+}
