@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct list
+{
+	int data;
+	struct list *next;
+}s;
+main()
+{
+	s *p=NULL,*top=NULL;
+	int ch,x,c;
+	while(1)
+	{
+		printf("enter the data value to be entered");
+		scanf("%d",&x);
+		p=(s*)malloc(sizeof(s));
+		if(p==NULL)
+		printf("memory allocation unsuccessfull");
+			p->data=x;
+			p->next=top;
+			top=p;	
+	printf("want to continue(0/1)");
+	scanf("%d",&c);
+	if (c!=1)
+		break;
+	}
+	if(top==NULL)
+	{
+		printf("stack empty");
+	}
+	else
+	{
+		s *temp;
+		temp=top;
+		while(temp!=NULL)
+		{
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+	}
+}	
+			
+			
+			
+			
+			
+		
+
+	
