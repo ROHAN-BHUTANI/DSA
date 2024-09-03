@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct list
+{
+	int data;
+	struct list *next;
+}s;
+s*insr(s*);
+s*insb(s*);
+s*del(s*);
+void disp(s*);
+int main()
+{
+	int ch,ch1;
+	s*f=NULL,*ptr=NULL;
+	do{
+	printf("1.INSERT\n2.DELETE\n3.DISPLAY\n");
+	printf("ENTER YOUR CHOICE");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			printf("INSERTION....");
+			printf("ENTER THE OPERATION TO PERFORM IN INSERTION");
+			printf("1.INSERTION AT RIGHT\n2.INSERTION BEFORE FIRST NODE");
+			scanf("%d",ch1);
+			switch(ch1)
+			{
+				case 1:
+					f=insr(f);
+					if (ptr==NULL)
+						ptr=f;
+				case 2:
+					ptr=insb(ptr);
+			}
+			break;
+		case 2:
+			printf("DELETION....");
+			ptr=del(ptr);
+			if (f==NULL)
+				ptr=NULL;
+			break;
+		case 3:
+			printf("DISPLAY....");
+			disp(ptr);
+			break;
+	}}while(ch<=3);
+}
+
+		
