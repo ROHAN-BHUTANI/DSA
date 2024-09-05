@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct list
+{
+	int data;
+	struct list *next;
+}sl;
+void enq(sl**,sl**);
+void deq(sl**,sl**);
+void disp(sl*);
+int main()
+{
+	sl *f=NULL,*r=NULL;
+	int ch;
+	do{
+	printf("\n1.ENQUEUE\n2.DEQUEUE\n3.DISPLAY\n");
+	printf("\nENTER YOUR CHOICE\n");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			enq(&f,&r);
+			break;
+		case 2:
+			deq(&f,&r);
+			break;
+		case 3:
+			disp(f);
+			break;
+	}}while(ch<=3);
+}
+void enq(sl**f,sl ** r)
+{
+	sl *p=NULL;
+	int x;
+	printf("\nENTER THE DATA\n");
+	scanf("%d",&x);
+	p=(sl*)malloc(sizeof(sl));
+	if (p!=NULL)
+	{
+		p->data=x;
+		if ((*r)==NULL&& (*f)==NULL)
+		{
+			(*r)=(*f)=p;
+			
+		}
+		else
+		{
+			(*r)->next=p;
+			*r=p;
+		}
+		(*r)->next=NULL;
+	}
+}
+void deq(sl**f,sl**r)
+{
+	sl *p=NULL;
+	if(*f==NULL)
+	{
+		printf("\nQUEUE EMPTY\n");
+		*r=NULL;
+	}
+	else
+	{
+		p=(*f);
+		printf("THE ELEMENT TO BE DELETEDIS\n%d\n",(*f)->data);
+		(*f)=(*f)->next;
+		free(p);
+	}
+}
+void disp(sl*f)
+{
+	if(f==NULL)
+	printf("QUEUE IS EMPTY");
+	else
+	{
+		while(f!=NULL)
+		{
+			printf("%d",f->data);
+			f=f->next;
+		}
+	}
+}
+		
+		
+			
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
