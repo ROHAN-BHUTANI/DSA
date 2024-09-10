@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct circular_queue
+{
+    int data;
+    struct circular_queue * next;
+}cq;
+void cenq(cq **,cq **);
+void cdeq(cq **,cq **);
+void disp(cq *);
+int main()
+{
+    int ch;
+    cq *F=NULL,*R=NULL;
+    do{
+    printf("1.ENQUEUE\n2.DEQUEUE\n3.DISPLAY\n");
+    printf("\nENTER YOUR CHOICE\n");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:
+            cenq(&F,&R);
+            break;
+        case 2:
+            cdeq(&F,&R);
+            break;
+        case 3:
+            disp(F);
+            break;
+    }}while(ch<=3);
+    return 0;
+}
+void cenq(cq **F1,cq**R1)
+{
+    cq *p=NULL;
+    p=(cq*)malloc(sizeof(cq));
+    printf("ENTER DATA");
+    scanf("%d",&(p->data));
+    if (p!=NULL)
+    {
+    if (*F1==NULL && *R1==NULL)
+        *F1=*R1=p;
+    else
+    {
+        (*R1)->next=p;
+        *R1=p;
+    }
+    (*R1)->next=*F1;
+    }
+    else
+        printf("MEMORY ALLOCATION FAILED");
+}
+void cdeq(cq **F1,cq **R1)
+{
+    cq *p=NULL;
+    p=*F1;
+    if(*F1==NULL && *R1==NULL)
+        printf("CIRCULAR QUEUE EMPTY");
+    else if(*F1==*R1)
+        {
+        printf("THE VALUE TO BE DELETD IS%d\n",(*F1)->data);
+        *F1=*R1=NULL;}
+    else{
+    printf("THE DATA TO BE DELETED IS %d\n",p->data);
+    (*F1)=(*F1)->next;
+    (*R1)->next=*F1;}
+    free (p);
+}
+void disp(cq *F)
+{
+    cq *p=F;
+    if(F==NULL)
+        printf("QUEUE IS EMPTY");
+    else
+    {
+        do{
+        printf(" %d ",p->data);
+        p=p->next;
+        }while(p!=F);
+    }
+}
