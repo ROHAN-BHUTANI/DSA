@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct linked_list{
+	int data;
+	struct linked_list *next;
+}ll;
+ll* enq(ll *,ll*);
+ll* deq(ll *,ll*);
+void disp(ll *);
+int main()
+{
+	ll *f=NULL,*r=NULL;
+	int ch;
+	do{
+	printf("1.ENQUEUE\n2.DEQUEUE\n3.DISPLAY");
+	printf("ENTER YOUR CHOICE");
+	scanf("%d",&ch);
+	switch (ch)
+	{
+		case 1:
+			r=enq(r,f);
+			if (f==NULL)
+				f=r;
+			break;
+		case 2:
+			f=deq(f,r);
+			if (f==NULL)
+				r=NULL;
+			break;
+		case 3:
+			disp(f);
+			break;
+		case 4:
+			exit(0);
+	}}while(ch<=4);
+	return 0;
+}
+ll* enq(ll*r,ll*f)
+{
+	ll *p=NULL;
+	int x;
+	p=(ll*)malloc(sizeof(ll));
+	printf("ENTER THE DATA VALUE");
+	scanf("%d",&x);
+	if (p!=NULL)
+	{
+		if(r==NULL)
+		{
+			p->data=x;
+			r=p;
+			r->next=r;
+		}
+		else
+		{
+			p->data=x;
+			r->next=p;
+			r=r->next;
+			r->next=f;
+		}
+		//r=r->next;
+	}
+	return r;
+}
+ll* deq(ll*f,ll*r)
+{
+	ll*p=NULL;
+	p=f;
+	if (f==NULL)
+		printf("QUEUE EMPTY");
+	else{
+	printf("THE DATA TO BE DELETED IS%d",f->data);
+	f=f->next;
+	r->next=f;
+	}
+	free(p);
+	return f;
+}
+void disp(ll* f)
+{
+	ll*p=f;
+	if(f==NULL)
+		printf("QUEUE EMPTY");
+	else
+	{
+		do{
+			printf("%d",p->data);
+			p=p->next;
+		}while(p!=f);}
+	
+}
+		
