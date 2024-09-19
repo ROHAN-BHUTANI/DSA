@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct dd {
+    struct dd* prev;
+    int data;
+    struct dd* next;
+} dd;
+
+void enq(dd** f, dd** r);
+void disp(dd* f);
+
+int main() {
+    dd* f = NULL;  // Front pointer
+    dd* r = NULL;  // Rear pointer
+    int ch;
+
+    do {
+        printf("\n\nENTER THE OPERATION YOU WANT TO PERFORM\n");
+        printf("1.ENQUEUE\n2.DISPLAY\n");
+        scanf("%d", &ch);
+        switch (ch) {
+            case 1:
+                enq(&f, &r);
+                break;
+            case 2:
+                disp(f);
+                break;
+        }
+    } while (ch <= 2);
+
+    // Free the allocated memory (optional, but a good practice)
+    while (f != NULL) {
+        dd* temp = f;
+        f = f->next;
+        free(temp);
+    }
+
+    return 0;
+}
+
+void enq(dd** f, dd** r) {
+    dd* p = (dd*)malloc(sizeof(dd));
+    if (p == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+    int x;
+    printf("ENTER THE DATA TO BE ENTERED: ");
+    scanf("%d", &x);
+    p->data = x;
+    p->next = NULL;
+    p->prev = NULL;
+
+    if (*f == NULL && *r == NULL) {
+        // Queue is empty
+        *f = p;
+        *r = p;
+    } else if (x < (*f)->data) {
+        // Insert at front
+        p->next = *f;
+        (*f)->prev = p;
+        *f = p;
+    } else if (x > (*r)->data) {
+        // Insert at rear
+        p->prev = *r;
+        (*r)->next = p;
+        *r = p;
+    } else {
+        // Insert in the middle
+        dd* current = *f;
+        while (current != NULL && current->data < x) {
+            current = current->next;
+        }
+        
+        // Now 'current' is the first node with a greater value than x
+        p->next = current;
+        p->prev = current->prev;
+        
+        if (current->prev != NULL) {
+            current->prev->next = p;
+        }
+        
+        current->prev = p;
+
+        // If we are inserting at the front, update the front pointer
+        if (p->prev == NULL) {
+            *f = p;
+        }
+    }
+}
+
+void disp(dd* f) {
+    if (f == NULL) {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Elements in the queue: ");
+    while (f != NULL) {
+        printf("%d ", f->data);
+        f = f->next;
+    }
+    printf("\n");
+}
