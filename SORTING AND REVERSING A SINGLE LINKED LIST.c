@@ -7,7 +7,7 @@ typedef struct linked_list
 	struct linked_list *next;
 }ll;
 void push(ll**,ll**);
-void sort(ll**,ll**);
+void sort(ll**);
 void rev(ll*);
 int main()
 {
@@ -23,7 +23,7 @@ int main()
 			push(&f,&r);
 			break;
 		case 2:
-			sort(&f,&r);
+			sort(&f);
 			break;
 		case 3:
 			rev(f);
@@ -52,7 +52,7 @@ void push(ll**f,ll**r)
 		}
 	}
 }
-void sort(ll**f,ll**r)
+void sort(ll**f)
 {
 	int  i,j,n=0,t;
 	ll *m=*f;
