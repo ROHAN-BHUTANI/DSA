@@ -6,19 +6,15 @@ typedef struct circular_queue
     struct circular_queue * next;
 }cq;
 void cenq(cq **,cq **);
-void disp(cq *);
+void disp(cq *,int );
 int main()
 {
-    int ch;
     cq *F=NULL,*R=NULL;
-    int k,N;
+    int k,N,i;
     printf("ENTER THE VALUE OF K");
     scanf("%d",&k);
     printf("ENTER NUMBER OF ELEMENTS");
     scanf("%d",&N);
-    printf("1.ENQUEUE\n2.DEQUEUE\n3.DISPLAY\n");
-    printf("\nENTER YOUR CHOICE\n");
-    scanf("%d",&ch);
     for(i=0;i<N;i++)
     {
             cenq(&F,&R);
@@ -48,13 +44,29 @@ void cenq(cq **F1,cq**R1)
 }
 void disp(cq *F,int k)
 {
-    int c=0;
+    int c=1;
     cq *p=F,*m=NULL;
-   		while(p->next!=p)
-   		if(
-    		printf("PERSON NUMBER %d  IS ELIMINATED",*p);
+    while(p->next!=p)
+    {
+    	if((c+1)%(k)==0)
+    	{
+    		m=p->next;
+    		printf("\nPERSON NUMBER %d  IS ELIMINATED\n",m->data);
+    		p->next=m->next;
+    		free(m);
+      		p=p->next;
+      		c=1;
+   	}
+   	else
+   	{
+   		p=p->next;
+   		c++;
+   	}
+   }
+   printf("\nTHE SURVIVOR IS ->%d\n",p->data);
+   return ;
+}
     		
     		
     	
     
-}
