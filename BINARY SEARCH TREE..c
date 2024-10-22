@@ -13,7 +13,7 @@ int main()
 	tree*root=NULL;
 	int ch,num;
 	do{
-		printf("1.INSERT\n2.PREORDER\n3.INORDER\n4.POSTORDER");
+		printf("1.INSERT\n");
 		scanf("%d",&ch);
 		switch(ch){
 			case 1:
