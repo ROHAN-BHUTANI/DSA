@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct tree
+{
+	struct tree * left;
+	int data;
+	struct tree*right;
+}tt;
+void insert(tt**,int);
+int countnodes(tt*);
+int countleaf(tt*);
+int countsingle(tt*);
+int main()
+{
+	tt * root=NULL;
+	int ch,v,p,q,r;
+	do{
+	printf("1.INSERT\n2.COUNT TOTAL NUMBER OF NODES\n3.COUNT TOTAL LEAF NODES\n4.COUNT NODES WITH A SINGLE CHILD\n");
+	printf("ENTER CHOICE");
+	scanf("%d",&ch);
+	switch (ch)
+	{
+		case 1:
+			printf("ENTER THE NODE VALUE");
+			scanf("%d",&v);
+			insert(&root,v);
+			break;
+		case 2:
+			p=countnodes(root);
+			break;
+		case 3:
+			q=countleaf(root);
+			break;
+		case 4:
+			r=countsingle(root);
+			break;
+	}}while(ch<=4);
+	printf("TOTAL NUMBER OF NODES ->%d",p);
+	printf("TOTAL NUMBER OF LEAF NODES ->%d",q);
+	printf("TOTAL NUMBER OF PARENT NODES WITH SINGLE CHILD ->%d",r);
+	return 0;
+}
+void insert(tt**root,int v)
+{
+	if((*root)==NULL)
+	{
+		tt*p=NULL;
+		p=(tt*)malloc(sizeof(tt));
+		p->data=v;
+		p->left=NULL;
+		p->right=NULL;
+		(*root)=p;
+	}
+	else if((*root)->data<v)
+	{
+		insert(&((*root)->right),v);
+	}
+	else if((*root)->data>v)
+	{
+		insert(&((*root)->left),v);
+	}
+}
+int countnodes(tt*root)
+{
+	if (root==NULL)
+	{
+		return 0;
+	}
+	else
+		return (1+countnodes(root->left)+countnodes(root->right));
+}
+int countleaf(tt*root)
+{
+	if(root->left==NULL && root->right==NULL)
+	{
+		return 0;
+	}
+	else
+		return(1+countleaf(root->left)+countleaf(root->right));
+}
+int countsingle(tt*root)
+{
+	if((root->left!=NULL&&root->right ==NULL) || (root->right!=NULL)&& (root->left==NULL))
+	{
+		return(1+countsingle(root->left)+countsingle(root->right));
+	}
+	else
+		return 0;
+}
